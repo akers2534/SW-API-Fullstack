@@ -29,7 +29,7 @@ class People(db.Model):
     height = db.Column(db.String(25), unique=False, nullable=False)
     weight = db.Column(db.String(20), unique=False, nullable=False)
     gender = db.Column(db.String(20), unique=False, nullable=False)
-    planets_id = db.Column(db.Integer, db.ForeignKey("planets.id"), nullable=False)
+    planets_id = db.Column(db.Integer, db.ForeignKey("planets.id"))
     __tablename__ = "people"
     def __repr__(self):
         return '<People %r>' % self.name
@@ -86,10 +86,10 @@ class Favorites(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "name": self.name,
-            "terrain": self.terrain,
-            "population": self.population,
-            "gravity": self.gravity,
+            "user": self.user,
+            "people": self.people,
+            "planets": self.planets,
+            "vehicles": self.vehicles,
             # do not serialize the password, its a security breach
         } 
 
